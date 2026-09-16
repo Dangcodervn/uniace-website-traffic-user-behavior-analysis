@@ -1,0 +1,15 @@
+# Data files chứa PII thật (email, IP address) của người dùng website
+# -> không push lên public repo, chỉ giữ ở local
+Raw data/*.xlsx
+Clean data/*.xlsx
+Clean data/finaldata.csv
+
+# Power BI file lưu bản sao dữ liệu gốc trong data model, có thể xem lại
+# email/IP thật khi mở bằng Power BI Desktop -> không push
+Uniace.pbix
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
+Clean data/.git_orphan_empty_backup/
