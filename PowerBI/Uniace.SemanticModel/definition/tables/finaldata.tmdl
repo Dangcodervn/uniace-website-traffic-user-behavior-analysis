@@ -1,0 +1,287 @@
+table finaldata
+	lineageTag: 89c377ab-4bb8-4b28-bac5-d6e24d423c63
+
+	column Email
+		dataType: string
+		lineageTag: 5cb94078-6ef8-4b1b-81ae-a1face57b5cb
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 3baadd5c-75ad-4801-8855-86aa40f043ce
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: ecc971fc-57ea-4dde-80ed-41f8b997d510
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MA URL'
+		dataType: string
+		lineageTag: 9715e929-0997-42be-8fce-55d7bbe263dd
+		summarizeBy: none
+		sourceColumn: MA URL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MA Referrer'
+		dataType: string
+		lineageTag: 0e83ae6d-061e-4fbd-90ff-28ab3ab3dcf0
+		summarizeBy: none
+		sourceColumn: MA Referrer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'IP Address'
+		dataType: string
+		lineageTag: 3ee207a9-75c3-469a-8316-9c70899b3dad
+		summarizeBy: none
+		sourceColumn: IP Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column cuid
+		dataType: string
+		lineageTag: fc555d2f-ce0e-4ff4-bc53-108b54f7bffd
+		summarizeBy: none
+		sourceColumn: cuid
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Type'
+		dataType: string
+		lineageTag: fdc9d671-959a-4cb9-9617-75ee1d7bbea0
+		summarizeBy: none
+		sourceColumn: Customer Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column School
+		dataType: string
+		lineageTag: 84ff4a66-9c60-4a95-8e9e-d4099e8e0d77
+		summarizeBy: none
+		sourceColumn: School
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Referrer Type'
+		dataType: string
+		lineageTag: 22e8f2b3-bd69-4b9f-8a82-450e551b152d
+		summarizeBy: none
+		sourceColumn: Referrer Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Content Type'
+		dataType: string
+		lineageTag: a4c4b01a-1389-4ffc-a32b-58a2d030e626
+		summarizeBy: none
+		sourceColumn: Content Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Traffic Type'
+		dataType: string
+		lineageTag: 34a80947-782c-440a-a17d-813925f55e4b
+		summarizeBy: none
+		sourceColumn: Traffic Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Only Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 06bf1f40-e5a6-41d1-b816-28f8032a9c74
+		summarizeBy: none
+		sourceColumn: Only Date
+
+		variation Variation
+			isDefault
+			relationship: 90602937-1f88-479a-9d5c-6c8d110dbc83
+			defaultHierarchy: LocalDateTable_fda7688c-b168-4f32-8fa3-0dffedb65ec4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 69cc3b03-0268-4acf-b720-ff233a92b37d
+		summarizeBy: none
+		sourceColumn: Hour
+
+		annotation SummarizationSetBy = User
+
+	partition finaldata = m
+		mode: import
+		source = ```
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Self Learning\Tran Hoang Long _ Data Analyst Course\Data Analyst\Uniace Website Traffic & User Behavior Analysis\Clean data\finaldata.csv"),[Delimiter=",", Columns=15, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Email", type text}, {"Type", type text}, {"Name", type text}, {"Title", type text}, {"MA URL", type text}, {"MA Referrer", type text}, {"ma_path", type text}, {"IP Address", type text}, {"cuid", type text}, {"Date", type datetime}, {"URL", type text}, {"Link", type text}, {"Tag", type text}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "Customer Type", each if Text.Contains([Email], "gmail") then "Normal" else if Text.Contains([Email], "edu") then "Sinh viên" else "Normal"),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Conditional Column", each true),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Filtered Rows", "Custom", each if Text.Contains([Email], "gmail") then "" else if Text.Contains([Email], "edu") then [Email] else null),
+				    #"Replaced Value12" = Table.ReplaceValue(#"Added Conditional Column1","","N/A",Replacer.ReplaceValue,{"Email"}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Replaced Value12", "Custom", Splitter.SplitTextByDelimiter("@", QuoteStyle.Csv), {"Custom.1", "Custom.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Custom.1", type text}, {"Custom.2", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"Custom.1"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Custom.2", "School"}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns",".edu.vn","",Replacer.ReplaceText,{"School"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","glos.","",Replacer.ReplaceText,{"School"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","students.","",Replacer.ReplaceText,{"School"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","student.","",Replacer.ReplaceText,{"School"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","sis.","",Replacer.ReplaceText,{"School"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","stu.","",Replacer.ReplaceText,{"School"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5","st.","",Replacer.ReplaceText,{"School"}),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6","sv.","",Replacer.ReplaceText,{"School"}),
+				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value7","s.","",Replacer.ReplaceText,{"School"}),
+				    #"Replaced Value9" = Table.ReplaceValue(#"Replaced Value8","sinhvien.","",Replacer.ReplaceText,{"School"}),
+				    #"Replaced Value10" = Table.ReplaceValue(#"Replaced Value9","mail.","",Replacer.ReplaceText,{"School"}),
+				    #"Uppercased Text" = Table.TransformColumns(#"Replaced Value10",{{"School", Text.Upper, type text}}),
+				    #"Replaced Value11" = Table.ReplaceValue(#"Uppercased Text",null,"Not Student",Replacer.ReplaceValue,{"School"}),
+				    #"Added Conditional Column2" = Table.AddColumn(#"Replaced Value11", "Referrer Type", each if Text.Contains([MA Referrer], "chgif") then "Uniace" else if Text.Contains([MA Referrer], "google") then "Google" else if Text.Contains([Type], "template") then "Uniace" else if Text.Contains([MA Referrer], "uniace") then "Uniace" else if Text.Contains([MA Referrer], "coccoc") then "Cốc cốc" else if Text.Contains([MA Referrer], "zalo") then "Zalo" else if Text.Contains([MA Referrer], "insta") then "Instagram" else if Text.Contains([MA Referrer], "messenger") then "Facebook" else if Text.Contains([MA Referrer], "facebook") then "Facebook" else if Text.Contains([MA Referrer], "yahoo") then "Yahoo" else if Text.Contains([MA Referrer], "bing") then "Bing" else if Text.Contains([MA Referrer], "beacon") then "Tiếp thị liên kết" else if Text.Contains([MA Referrer], "baidu") then "Baidu" else if Text.Contains([MA Referrer], "duckduckgo") then "DuckDuckGo" else if Text.Contains([MA Referrer], "ecosia") then "Ecosia" else if Text.Contains([MA Referrer], "yandex") then "Yandex" else if Text.Contains([MA Referrer], "tiktok") then "Tiktok" else if Text.Contains([MA Referrer], "form") then "Form" else if Text.Contains([MA Referrer], "koc") then "KOC" else if Text.Contains([MA Referrer], "many.link") then "Bio" else if Text.Contains([MA Referrer], "youtube") then "Youtube" else if [MA Referrer] = "" then "Direct" else "Other"),
+				    #"Added Custom" = Table.AddColumn(#"Added Conditional Column2", "Content Type", each if Text.Contains([Name], "Young", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "VYT")
+				         then "Young Talent"
+				    else if [Type] <> "page" then "Trang khác"
+				    else if [Name] = null or [Name] = "" then "Trang khác"
+				    else if Text.Contains([Name], "Chính sách", Comparer.OrdinalIgnoreCase) 
+				         or Text.Contains([Name], "Điều khoản", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Liên hệ", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "FAQ", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "About Us", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Checkout", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Thanh toán", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Purchase", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Tài khoản", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Lưu trữ", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Tác giả", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Không tìm thấy trang", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Draft", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Demo", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Ebook", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "membership", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Slack Community", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Đường dẫn tài liệu", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Thảo luận và đánh giá", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "THÔNG TIN GIẢNG VIÊN", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Bạn đã tìm", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Đăng ký tài khoản", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Hướng dẫn đăng ký khóa học", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "HƯỚNG DẪN QUAN TRỌNG", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Chuẩn bị -", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "KHÓA HỌC CỦA TÔI", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "TRUNG TÂM CHĂM SÓC KHÁCH HÀNG", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Sale Countdown", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "UNIACE KHÁC BIỆT", Comparer.OrdinalIgnoreCase)
+				         or Text.StartsWith([Name], "Tháng Bảy 2020")
+				         or Text.StartsWith([Name], "Tháng Chín 2020")
+				         or Text.StartsWith([Name], "Tháng Sáu 2020")
+				         or Text.StartsWith([Name], "Tháng Tư 2020")
+				         or Text.StartsWith([Name], "2020-")
+				         then "Trang khác"
+				    else if Text.Contains([Name], "SOFT") then "Kỹ năng mềm"
+				    else if Text.Contains([Name], "High Performer", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "UAC")
+				         or Text.Contains([Name], "Mindset Foundation", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Coaching", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Growth Hacking", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "HIỆU SUẤT CAO", Comparer.OrdinalIgnoreCase)
+				         then "Chương trình đào tạo"
+				    else if Text.Contains([Name], "TECH", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "DATA", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "dữ liệu", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Excel", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Pivot", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Query", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "SQL", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "DAX", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Dashboard", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "phân tích", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Business Intelligence", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Slicer", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Power BI", Comparer.OrdinalIgnoreCase)
+				         or Text.StartsWith([Name], "Làm quen", Comparer.OrdinalIgnoreCase)
+				         or Text.StartsWith([Name], "Thực hành -", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Ngữ cảnh", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Conditional Formatting", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Primary Key", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Foreign Key", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Formula Bar", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Relationship", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Table", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Column", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Field", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Filter", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Quick Access Toolbar", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "PQL")
+				         or Text.Contains([Name], "Analytics", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Pareto", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "sơ đồ ngôi sao", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "bông tuyết", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Year to Date", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Fiscal Year", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Combine", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Show value as", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Summarize value", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Tỉ trọng", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "phím tắt", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "doanh số", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "mật độ giao dịch", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "nhóm dẫn đầu", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "xu hướng kinh doanh", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "bộ nhớ đệm", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "quản lý dòng và cột", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "xlsb", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "bảng số liệu", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "bảng đối tượng", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "SSBI", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "hệ thống BI", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "công thức của một bước", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "(PQ ", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "tổng quát tới chi tiết", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Cấu trúc WITH", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Tùy biến giao diện", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "Chọn layout", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "tỉ lệ đóng góp", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "sức bán", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "định dạng số", Comparer.OrdinalIgnoreCase)
+				         or Text.Contains([Name], "lập trình", Comparer.OrdinalIgnoreCase)
+				         or [Name] = "A1.Tài liệu - uniace.vn"
+				         or [Name] = "A4.Tài liệu - uniace.vn"
+				         or [Name] = "F1.Tài liệu - uniace.vn"
+				         or [Name] = "F2.Tài liệu - uniace.vn"
+				         or [Name] = "F3.Tài liệu - uniace.vn"
+				         or [Name] = "F6.Tài liệu - uniace.vn"
+				         or [Name] = "I1.Tài liệu - uniace.vn"
+				         or [Name] = "I2.Tài liệu - uniace.vn"
+				         then "Dữ liệu"
+				    else "Kỹ năng mềm"),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Traffic Type", each if [Referrer Type] = "Uniace" then "Nội bộ"
+				    else if List.Contains({"Google", "Cốc cốc", "Baidu", "DuckDuckGo", "Ecosia", "Yandex", "Bing"}, [Referrer Type]) then "Organic"
+				    else if List.Contains({"Facebook", "Zalo", "Instagram", "Tiktok", "Youtube", "Bio"}, [Referrer Type]) then "Social"
+				    else if List.Contains({"Tiếp thị liên kết", "KOC"}, [Referrer Type]) then "Affiliate/KOC"
+				    else if [Referrer Type] = "Direct" then "Trực tiếp"
+				    else "N/A"),
+				    #"Inserted Date" = Table.AddColumn(#"Added Custom1", "Only Date", each DateTime.Date([Date]), type date),
+				    #"Inserted Hour" = Table.AddColumn(#"Inserted Date", "Hour", each Time.Hour([Date]), Int64.Type),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Inserted Hour",{"URL", "Link", "Tag", "_1", "", "Title", "ma_path", "Date"})
+				in
+				    #"Removed Columns1"
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Uniace"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "df3157a8-0b28-4577-8371-147dad4fa9e6"
+  }
+}
