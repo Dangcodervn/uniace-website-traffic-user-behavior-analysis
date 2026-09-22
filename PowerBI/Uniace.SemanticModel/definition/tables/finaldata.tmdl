@@ -1,6 +1,66 @@
 table finaldata
 	lineageTag: 89c377ab-4bb8-4b28-bac5-d6e24d423c63
 
+	measure PageViews = CALCULATE(COUNTROWS(finaldata), finaldata[Type] = "page")
+		formatString: 0
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000001
+
+	measure 'Unique Visitors' =
+			CALCULATE(
+			    DISTINCTCOUNT(finaldata[Visitor ID]),
+			    NOT(ISBLANK(finaldata[Visitor ID]))
+			)
+		formatString: 0
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000002
+
+	measure 'Registered Users' =
+			CALCULATE(
+			    DISTINCTCOUNT(finaldata[Email]),
+			    finaldata[Email] <> "N/A"
+			)
+		formatString: 0
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000003
+
+	measure 'New Registrations' = CALCULATE(COUNTROWS(finaldata), finaldata[Name] IN {"New Account", "UAC Register"})
+		formatString: 0
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000004
+
+	measure 'Completed Orders' = CALCULATE(DISTINCTCOUNT(finaldata[Email]), finaldata[Name] = "Completed Order")
+		formatString: 0
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000005
+
+	measure 'Conversion Rate' = DIVIDE([Completed Orders], [Unique Visitors])
+		formatString: 0%
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000006
+
+	measure 'Registration Rate' = DIVIDE([New Registrations], [PageViews])
+		formatString: 0%
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000007
+
+	measure 'Avg PageViews per Day' = DIVIDE([PageViews], DISTINCTCOUNT(finaldata[Only Date]))
+		formatString: 0
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000008
+
+	measure '% Organic Traffic' = DIVIDE(CALCULATE([PageViews], finaldata[Traffic Type] = "Organic"), [PageViews])
+		formatString: 0%
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000009
+
+	measure '% Social Traffic' = DIVIDE(CALCULATE([PageViews], finaldata[Traffic Type] = "Social"), [PageViews])
+		formatString: 0%
+		lineageTag: c1a1b1a0-1111-4a11-8111-00000000000a
+
+	measure '% Direct Traffic' = DIVIDE(CALCULATE([PageViews], finaldata[Traffic Type] = "Trực tiếp"), [PageViews])
+		formatString: 0%
+		lineageTag: c1a1b1a0-1111-4a11-8111-00000000000b
+
+	measure '% Sinh viên' =
+			DIVIDE(
+			    CALCULATE([Unique Visitors], finaldata[Customer Type] = "Sinh viên"),
+			    [Unique Visitors]
+			)
+		formatString: 0%
+		lineageTag: c1a1b1a0-1111-4a11-8111-00000000000c
+
 	column Email
 		dataType: string
 		lineageTag: 5cb94078-6ef8-4b1b-81ae-a1face57b5cb
@@ -38,22 +98,6 @@ table finaldata
 		lineageTag: 0e83ae6d-061e-4fbd-90ff-28ab3ab3dcf0
 		summarizeBy: none
 		sourceColumn: MA Referrer
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'IP Address'
-		dataType: string
-		lineageTag: 3ee207a9-75c3-469a-8316-9c70899b3dad
-		summarizeBy: none
-		sourceColumn: IP Address
-
-		annotation SummarizationSetBy = Automatic
-
-	column cuid
-		dataType: string
-		lineageTag: fc555d2f-ce0e-4ff4-bc53-108b54f7bffd
-		summarizeBy: none
-		sourceColumn: cuid
 
 		annotation SummarizationSetBy = Automatic
 
@@ -122,6 +166,23 @@ table finaldata
 
 		annotation SummarizationSetBy = User
 
+	column 'Day of Week'
+		dataType: int64
+		formatString: 0
+		lineageTag: 792d7dc1-5128-468b-84f9-be09e8cfd2c8
+		summarizeBy: sum
+		sourceColumn: Day of Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Visitor ID'
+		dataType: string
+		lineageTag: a11f06c0-c224-40ad-815f-9cd35718738a
+		summarizeBy: none
+		sourceColumn: Visitor ID
+
+		annotation SummarizationSetBy = Automatic
+
 	partition finaldata = m
 		mode: import
 		source = ```
@@ -150,7 +211,7 @@ table finaldata
 				    #"Replaced Value10" = Table.ReplaceValue(#"Replaced Value9","mail.","",Replacer.ReplaceText,{"School"}),
 				    #"Uppercased Text" = Table.TransformColumns(#"Replaced Value10",{{"School", Text.Upper, type text}}),
 				    #"Replaced Value11" = Table.ReplaceValue(#"Uppercased Text",null,"Not Student",Replacer.ReplaceValue,{"School"}),
-				    #"Added Conditional Column2" = Table.AddColumn(#"Replaced Value11", "Referrer Type", each if Text.Contains([MA Referrer], "chgif") then "Uniace" else if Text.Contains([MA Referrer], "google") then "Google" else if Text.Contains([Type], "template") then "Uniace" else if Text.Contains([MA Referrer], "uniace") then "Uniace" else if Text.Contains([MA Referrer], "coccoc") then "Cốc cốc" else if Text.Contains([MA Referrer], "zalo") then "Zalo" else if Text.Contains([MA Referrer], "insta") then "Instagram" else if Text.Contains([MA Referrer], "messenger") then "Facebook" else if Text.Contains([MA Referrer], "facebook") then "Facebook" else if Text.Contains([MA Referrer], "yahoo") then "Yahoo" else if Text.Contains([MA Referrer], "bing") then "Bing" else if Text.Contains([MA Referrer], "beacon") then "Tiếp thị liên kết" else if Text.Contains([MA Referrer], "baidu") then "Baidu" else if Text.Contains([MA Referrer], "duckduckgo") then "DuckDuckGo" else if Text.Contains([MA Referrer], "ecosia") then "Ecosia" else if Text.Contains([MA Referrer], "yandex") then "Yandex" else if Text.Contains([MA Referrer], "tiktok") then "Tiktok" else if Text.Contains([MA Referrer], "form") then "Form" else if Text.Contains([MA Referrer], "koc") then "KOC" else if Text.Contains([MA Referrer], "many.link") then "Bio" else if Text.Contains([MA Referrer], "youtube") then "Youtube" else if [MA Referrer] = "" then "Direct" else "Other"),
+				    #"Added Conditional Column2" = Table.AddColumn(#"Replaced Value11", "Referrer Type", each if Text.Contains([MA Referrer], "chgif") then "Uniace" else if Text.Contains([MA Referrer], "google") then "Google" else if Text.Contains([Type], "template") then "Email" else if Text.Contains([MA Referrer], "uniace") then "Uniace" else if Text.Contains([MA Referrer], "coccoc") then "Cốc cốc" else if Text.Contains([MA Referrer], "zalo") then "Zalo" else if Text.Contains([MA Referrer], "insta") then "Instagram" else if Text.Contains([MA Referrer], "messenger") then "Facebook" else if Text.Contains([MA Referrer], "facebook") then "Facebook" else if Text.Contains([MA Referrer], "yahoo") then "Yahoo" else if Text.Contains([MA Referrer], "bing") then "Bing" else if Text.Contains([MA Referrer], "beacon") then "Tiếp thị liên kết" else if Text.Contains([MA Referrer], "baidu") then "Baidu" else if Text.Contains([MA Referrer], "duckduckgo") then "DuckDuckGo" else if Text.Contains([MA Referrer], "ecosia") then "Ecosia" else if Text.Contains([MA Referrer], "yandex") then "Yandex" else if Text.Contains([MA Referrer], "tiktok") then "Tiktok" else if Text.Contains([MA Referrer], "form") then "Form" else if Text.Contains([MA Referrer], "koc") then "KOC" else if Text.Contains([MA Referrer], "many.link") then "Bio" else if Text.Contains([MA Referrer], "youtube") then "Youtube" else if [MA Referrer] = null or [MA Referrer] = "" then "Direct" else "Other"),
 				    #"Added Custom" = Table.AddColumn(#"Added Conditional Column2", "Content Type", each if Text.Contains([Name], "Young", Comparer.OrdinalIgnoreCase)
 				         or Text.Contains([Name], "VYT")
 				         then "Young Talent"
@@ -273,10 +334,15 @@ table finaldata
 				    else if List.Contains({"Facebook", "Zalo", "Instagram", "Tiktok", "Youtube", "Bio"}, [Referrer Type]) then "Social"
 				    else if List.Contains({"Tiếp thị liên kết", "KOC"}, [Referrer Type]) then "Affiliate/KOC"
 				    else if [Referrer Type] = "Direct" then "Trực tiếp"
+				    else if [Referrer Type] = "Email" then "Email/CRM"
 				    else "N/A"),
-				    #"Inserted Date" = Table.AddColumn(#"Added Custom1", "Only Date", each DateTime.Date([Date]), type date),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Visitor ID", each if [cuid] <> null and [cuid] <> "" then [cuid]
+				    else if [IP Address] <> null and [IP Address] <> "" then [IP Address]
+				    else null),
+				    #"Inserted Date" = Table.AddColumn(#"Added Custom2", "Only Date", each DateTime.Date([Date]), type date),
 				    #"Inserted Hour" = Table.AddColumn(#"Inserted Date", "Hour", each Time.Hour([Date]), Int64.Type),
-				    #"Removed Columns1" = Table.RemoveColumns(#"Inserted Hour",{"URL", "Link", "Tag", "_1", "", "Title", "ma_path", "Date"})
+				    #"Inserted Day of Week" = Table.AddColumn(#"Inserted Hour", "Day of Week", each Date.DayOfWeek([Date]), Int64.Type),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Inserted Day of Week",{"URL", "Link", "Tag", "_1", "", "Title", "ma_path", "Date", "IP Address", "cuid"})
 				in
 				    #"Removed Columns1"
 				```
