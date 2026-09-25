@@ -85,51 +85,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "e1e1706562c7592d9250",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "finaldata"
-              }
-            },
-            "Property": "Content Type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "3e0d7ccfd7c70e09a805",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "finaldata"
-              }
-            },
-            "Property": "PageViews"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "1f2fa5707c2be90920b7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "finaldata"
-              }
-            },
-            "Property": "Unique Visitors"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
