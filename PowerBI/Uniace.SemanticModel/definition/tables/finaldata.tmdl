@@ -73,6 +73,22 @@ table finaldata
 		formatString: 0%
 		lineageTag: c1a1b1a0-1111-4a11-8111-00000000000f
 
+	measure 'Số bài viết' = CALCULATE(DISTINCTCOUNT(finaldata[Name]), finaldata[Type] = "page")
+		formatString: 0
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000010
+
+	measure '% số bài' = DIVIDE([Số bài viết], CALCULATE([Số bài viết], ALLSELECTED(finaldata[Content Type])))
+		formatString: 0%
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000011
+
+	measure '% lượt xem' = DIVIDE([PageViews], CALCULATE([PageViews], ALLSELECTED(finaldata[Content Type])))
+		formatString: 0%
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000012
+
+	measure 'Lượt xem trung bình / bài' = DIVIDE([PageViews], [Số bài viết])
+		formatString: 0
+		lineageTag: c1a1b1a0-1111-4a11-8111-000000000013
+
 	column Email
 		dataType: string
 		lineageTag: 5cb94078-6ef8-4b1b-81ae-a1face57b5cb
@@ -192,6 +208,15 @@ table finaldata
 		lineageTag: a11f06c0-c224-40ad-815f-9cd35718738a
 		summarizeBy: none
 		sourceColumn: Visitor ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Thứ
+		dataType: string
+		lineageTag: 5b0c7a52-3e1d-4f6a-9d21-7c4e8a1b2f30
+		summarizeBy: none
+		sourceColumn: Thứ
+		sortByColumn: 'Day of Week'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -375,7 +400,8 @@ table finaldata
 				    #"Inserted Date" = Table.AddColumn(#"Added Custom2", "Only Date", each DateTime.Date([Date]), type date),
 				    #"Inserted Hour" = Table.AddColumn(#"Inserted Date", "Hour", each Time.Hour([Date]), Int64.Type),
 				    #"Inserted Day of Week" = Table.AddColumn(#"Inserted Hour", "Day of Week", each Date.DayOfWeek([Date]), Int64.Type),
-				    #"Removed Columns1" = Table.RemoveColumns(#"Inserted Day of Week",{"URL", "Link", "Tag", "_1", "", "Title", "ma_path", "Date", "IP Address", "cuid"})
+				    #"Added Day Name" = Table.AddColumn(#"Inserted Day of Week", "Thứ", each {"Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"}{[Day of Week]}, type text),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Added Day Name",{"URL", "Link", "Tag", "_1", "", "Title", "ma_path", "Date", "IP Address", "cuid"})
 				in
 				    #"Removed Columns1"
 				```

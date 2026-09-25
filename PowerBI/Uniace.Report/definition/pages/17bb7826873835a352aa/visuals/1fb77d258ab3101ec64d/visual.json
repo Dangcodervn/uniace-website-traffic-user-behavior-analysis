@@ -3,10 +3,10 @@
   "name": "1fb77d258ab3101ec64d",
   "position": {
     "x": 303.69581749049428,
-    "y": 129.94676806083649,
-    "z": 4000,
-    "height": 461.38403041825092,
-    "width": 779.680608365019,
+    "y": 134.32699619771861,
+    "z": 12000,
+    "height": 452.62357414448667,
+    "width": 876.04562737642584,
     "tabOrder": 4000
   },
   "visual": {
@@ -84,52 +84,120 @@
         "isDefaultSort": true
       }
     },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "finaldata.Unique Visitors"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Lượt xem và khách truy cập theo loại nội dung'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "31cdd774a04a6904d33a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "finaldata"
-              }
-            },
-            "Property": "Content Type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "55e39f1944683dc8c946",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "finaldata"
-              }
-            },
-            "Property": "PageViews"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "02e2454b67ba00966536",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "finaldata"
-              }
-            },
-            "Property": "Unique Visitors"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
