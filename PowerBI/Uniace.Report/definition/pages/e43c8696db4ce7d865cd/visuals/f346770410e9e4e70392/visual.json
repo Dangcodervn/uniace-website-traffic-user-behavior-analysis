@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "85236580d0095bac7ee9",
+  "name": "f346770410e9e4e70392",
   "position": {
     "x": 281.580547112462,
-    "y": 26.261398176291792,
-    "z": 1000,
-    "height": 1024.19452887538,
+    "y": 93.373860182370819,
+    "z": 2000,
+    "height": 26.261398176291792,
     "width": 1604.8632218844984,
     "tabOrder": 2000
   },
@@ -18,14 +18,7 @@
             "tileShape": {
               "expr": {
                 "Literal": {
-                  "Value": "'rectangleRounded'"
-                }
-              }
-            },
-            "rectangleRoundedCurve": {
-              "expr": {
-                "Literal": {
-                  "Value": "1L"
+                  "Value": "'line'"
                 }
               }
             }
@@ -53,7 +46,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
+                      "ColorId": 2,
                       "Percent": 0
                     }
                   }
@@ -64,9 +57,7 @@
           "selector": {
             "id": "default"
           }
-        }
-      ],
-      "outline": [
+        },
         {
           "properties": {
             "show": {
@@ -76,6 +67,52 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "outline": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "lineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "weight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ]

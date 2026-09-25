@@ -1,44 +1,33 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "199dad9130d7beb2a7c6",
+  "name": "a9c7d83435007c7d23a5",
   "position": {
-    "x": 306.615969581749,
-    "y": 302.2357414448669,
-    "z": 21000,
-    "height": 362.09885931558932,
-    "width": 928.60836501901133,
+    "x": 310.99619771863115,
+    "y": 134.32699619771861,
+    "z": 7000,
+    "height": 454.08365019011404,
+    "width": 754.85931558935363,
     "tabOrder": 4000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
           "projections": [
             {
               "field": {
-                "HierarchyLevel": {
+                "Column": {
                   "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "finaldata"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "Only Date"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
+                    "SourceRef": {
+                      "Entity": "finaldata"
                     }
                   },
-                  "Level": "Day"
+                  "Property": "Traffic Type"
                 }
               },
-              "queryRef": "finaldata.Only Date.Variation.Date Hierarchy.Day",
-              "nativeQueryRef": "Only Date Day",
+              "queryRef": "finaldata.Traffic Type",
+              "nativeQueryRef": "Traffic Type",
               "active": true
             }
           ]
@@ -57,7 +46,23 @@
                 }
               },
               "queryRef": "finaldata.PageViews",
-              "nativeQueryRef": "PageViews"
+              "nativeQueryRef": "Lượt xem",
+              "displayName": "Lượt xem"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "finaldata"
+                    }
+                  },
+                  "Property": "Unique Visitors"
+                }
+              },
+              "queryRef": "finaldata.Unique Visitors",
+              "nativeQueryRef": "Khách truy cập",
+              "displayName": "Khách truy cập"
             }
           ]
         }
@@ -66,36 +71,32 @@
         "sort": [
           {
             "field": {
-              "HierarchyLevel": {
+              "Measure": {
                 "Expression": {
-                  "Hierarchy": {
-                    "Expression": {
-                      "PropertyVariationSource": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "finaldata"
-                          }
-                        },
-                        "Name": "Variation",
-                        "Property": "Only Date"
-                      }
-                    },
-                    "Hierarchy": "Date Hierarchy"
+                  "SourceRef": {
+                    "Entity": "finaldata"
                   }
                 },
-                "Level": "Day"
+                "Property": "PageViews"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ],
         "isDefaultSort": true
       }
     },
     "objects": {
-      "categoryAxis": [
+      "legend": [
         {
           "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
+                }
+              }
+            },
             "labelColor": {
               "solid": {
                 "color": {
@@ -105,55 +106,30 @@
                       "Percent": 0
                     }
                   }
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
                 }
               }
             }
           }
         }
       ],
-      "valueAxis": [
+      "dataPoint": [
         {
           "properties": {
-            "labelColor": {
+            "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
+                      "ColorId": 5,
+                      "Percent": 0.2
                     }
                   }
                 }
               }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
             }
+          },
+          "selector": {
+            "metadata": "finaldata.Unique Visitors"
           }
         }
       ],
@@ -182,7 +158,57 @@
             "fontSize": {
               "expr": {
                 "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
                   "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }
@@ -223,7 +249,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Lượt xem theo ngày'"
+                  "Value": "'Lượt xem và khách truy cập theo nguồn traffic'"
                 }
               }
             }

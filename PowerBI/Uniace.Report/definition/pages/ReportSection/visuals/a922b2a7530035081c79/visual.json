@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "85236580d0095bac7ee9",
+  "name": "a922b2a7530035081c79",
   "position": {
-    "x": 281.580547112462,
-    "y": 26.261398176291792,
-    "z": 1000,
-    "height": 1024.19452887538,
-    "width": 1604.8632218844984,
-    "tabOrder": 2000
+    "x": 306.615969581749,
+    "y": 132.86692015209124,
+    "z": 8000,
+    "height": 146.00760456273764,
+    "width": 296.3954372623574,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "shape",
@@ -18,14 +18,14 @@
             "tileShape": {
               "expr": {
                 "Literal": {
-                  "Value": "'rectangleRounded'"
+                  "Value": "'rectangle'"
                 }
               }
             },
-            "rectangleRoundedCurve": {
+            "roundEdge": {
               "expr": {
                 "Literal": {
-                  "Value": "1L"
+                  "Value": "5L"
                 }
               }
             }
@@ -48,15 +48,32 @@
       "fill": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
             "fillColor": {
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#F7F7F7'"
                     }
                   }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -67,6 +84,21 @@
         }
       ],
       "outline": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
         {
           "properties": {
             "show": {

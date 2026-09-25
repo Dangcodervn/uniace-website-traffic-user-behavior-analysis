@@ -61,6 +61,18 @@ table finaldata
 		formatString: 0%
 		lineageTag: c1a1b1a0-1111-4a11-8111-00000000000c
 
+	measure 'Email Opens' = CALCULATE(COUNTROWS(finaldata), finaldata[Type] = "templates_open")
+		formatString: 0
+		lineageTag: c1a1b1a0-1111-4a11-8111-00000000000d
+
+	measure 'Email Clicks' = CALCULATE(COUNTROWS(finaldata), finaldata[Type] = "templates_click")
+		formatString: 0
+		lineageTag: c1a1b1a0-1111-4a11-8111-00000000000e
+
+	measure 'Email Click Rate' = DIVIDE([Email Clicks], [Email Opens])
+		formatString: 0%
+		lineageTag: c1a1b1a0-1111-4a11-8111-00000000000f
+
 	column Email
 		dataType: string
 		lineageTag: 5cb94078-6ef8-4b1b-81ae-a1face57b5cb
@@ -211,7 +223,29 @@ table finaldata
 				    #"Replaced Value10" = Table.ReplaceValue(#"Replaced Value9","mail.","",Replacer.ReplaceText,{"School"}),
 				    #"Uppercased Text" = Table.TransformColumns(#"Replaced Value10",{{"School", Text.Upper, type text}}),
 				    #"Replaced Value11" = Table.ReplaceValue(#"Uppercased Text",null,"Not Student",Replacer.ReplaceValue,{"School"}),
-				    #"Added Conditional Column2" = Table.AddColumn(#"Replaced Value11", "Referrer Type", each if Text.Contains([MA Referrer], "chgif") then "Uniace" else if Text.Contains([MA Referrer], "google") then "Google" else if Text.Contains([Type], "template") then "Email" else if Text.Contains([MA Referrer], "uniace") then "Uniace" else if Text.Contains([MA Referrer], "coccoc") then "Cốc cốc" else if Text.Contains([MA Referrer], "zalo") then "Zalo" else if Text.Contains([MA Referrer], "insta") then "Instagram" else if Text.Contains([MA Referrer], "messenger") then "Facebook" else if Text.Contains([MA Referrer], "facebook") then "Facebook" else if Text.Contains([MA Referrer], "yahoo") then "Yahoo" else if Text.Contains([MA Referrer], "bing") then "Bing" else if Text.Contains([MA Referrer], "beacon") then "Tiếp thị liên kết" else if Text.Contains([MA Referrer], "baidu") then "Baidu" else if Text.Contains([MA Referrer], "duckduckgo") then "DuckDuckGo" else if Text.Contains([MA Referrer], "ecosia") then "Ecosia" else if Text.Contains([MA Referrer], "yandex") then "Yandex" else if Text.Contains([MA Referrer], "tiktok") then "Tiktok" else if Text.Contains([MA Referrer], "form") then "Form" else if Text.Contains([MA Referrer], "koc") then "KOC" else if Text.Contains([MA Referrer], "many.link") then "Bio" else if Text.Contains([MA Referrer], "youtube") then "Youtube" else if [MA Referrer] = null or [MA Referrer] = "" then "Direct" else "Other"),
+				    #"Added Conditional Column2" = Table.AddColumn(#"Replaced Value11", "Referrer Type", each if Text.Contains([MA Referrer], "chgif") then "Uniace" 
+				    else if Text.Contains([MA Referrer], "google") then "Google" 
+				    else if Text.Contains([Type], "template") then "Email" 
+				    else if Text.Contains([MA Referrer], "uniace") then "Uniace" 
+				    else if Text.Contains([MA Referrer], "coccoc") then "Cốc cốc" 
+				    else if Text.Contains([MA Referrer], "zalo") then "Zalo" 
+				    else if Text.Contains([MA Referrer], "insta") then "Instagram" 
+				    else if Text.Contains([MA Referrer], "messenger") then "Facebook" 
+				    else if Text.Contains([MA Referrer], "facebook") then "Facebook" 
+				    else if Text.Contains([MA Referrer], "yahoo") then "Yahoo" 
+				    else if Text.Contains([MA Referrer], "bing") then "Bing" 
+				    else if Text.Contains([MA Referrer], "beacon") then "Bio" 
+				    else if Text.Contains([MA Referrer], "baidu") then "Baidu" 
+				    else if Text.Contains([MA Referrer], "duckduckgo") then "DuckDuckGo" 
+				    else if Text.Contains([MA Referrer], "ecosia") then "Ecosia" 
+				    else if Text.Contains([MA Referrer], "yandex") then "Yandex" 
+				    else if Text.Contains([MA Referrer], "tiktok") then "Tiktok" 
+				    else if Text.Contains([MA Referrer], "form") then "Form" 
+				    else if Text.Contains([MA Referrer], "koc") then "KOC" 
+				    else if Text.Contains([MA Referrer], "many.link") then "Bio" 
+				    else if Text.Contains([MA Referrer], "youtube") then "Youtube" 
+				    else if [MA Referrer] = null or [MA Referrer] = "" then "Direct" 
+				    else "Other"),
 				    #"Added Custom" = Table.AddColumn(#"Added Conditional Column2", "Content Type", each if Text.Contains([Name], "Young", Comparer.OrdinalIgnoreCase)
 				         or Text.Contains([Name], "VYT")
 				         then "Young Talent"
@@ -331,8 +365,7 @@ table finaldata
 				    else "Kỹ năng mềm"),
 				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Traffic Type", each if [Referrer Type] = "Uniace" then "Nội bộ"
 				    else if List.Contains({"Google", "Cốc cốc", "Baidu", "DuckDuckGo", "Ecosia", "Yandex", "Bing"}, [Referrer Type]) then "Organic"
-				    else if List.Contains({"Facebook", "Zalo", "Instagram", "Tiktok", "Youtube", "Bio"}, [Referrer Type]) then "Social"
-				    else if List.Contains({"Tiếp thị liên kết", "KOC"}, [Referrer Type]) then "Affiliate/KOC"
+				    else if List.Contains({"Facebook", "Zalo", "Instagram", "Tiktok", "Youtube", "Bio", "KOC"}, [Referrer Type]) then "Social"
 				    else if [Referrer Type] = "Direct" then "Trực tiếp"
 				    else if [Referrer Type] = "Email" then "Email/CRM"
 				    else "N/A"),

@@ -1,44 +1,33 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "199dad9130d7beb2a7c6",
+  "name": "d26287b908d24630db11",
   "position": {
-    "x": 306.615969581749,
-    "y": 302.2357414448669,
-    "z": 21000,
+    "x": 1252.7452471482889,
+    "y": 664.33460076045628,
+    "z": 20000,
     "height": 362.09885931558932,
-    "width": 928.60836501901133,
-    "tabOrder": 4000
+    "width": 613.231939163498,
+    "tabOrder": 6000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "barChart",
     "query": {
       "queryState": {
         "Category": {
           "projections": [
             {
               "field": {
-                "HierarchyLevel": {
+                "Column": {
                   "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "finaldata"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "Only Date"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
+                    "SourceRef": {
+                      "Entity": "finaldata"
                     }
                   },
-                  "Level": "Day"
+                  "Property": "Content Type"
                 }
               },
-              "queryRef": "finaldata.Only Date.Variation.Date Hierarchy.Day",
-              "nativeQueryRef": "Only Date Day",
+              "queryRef": "finaldata.Content Type",
+              "nativeQueryRef": "Content Type",
               "active": true
             }
           ]
@@ -66,91 +55,29 @@
         "sort": [
           {
             "field": {
-              "HierarchyLevel": {
+              "Measure": {
                 "Expression": {
-                  "Hierarchy": {
-                    "Expression": {
-                      "PropertyVariationSource": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "finaldata"
-                          }
-                        },
-                        "Name": "Variation",
-                        "Property": "Only Date"
-                      }
-                    },
-                    "Hierarchy": "Date Hierarchy"
+                  "SourceRef": {
+                    "Entity": "finaldata"
                   }
                 },
-                "Level": "Day"
+                "Property": "PageViews"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ],
         "isDefaultSort": true
       }
     },
     "objects": {
-      "categoryAxis": [
+      "zoom": [
         {
           "properties": {
-            "labelColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
-            "bold": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "labelColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
                 }
               }
             }
@@ -164,6 +91,13 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "enableTitleDataLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             },
@@ -182,7 +116,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "9D"
                 }
               }
             }
@@ -223,7 +157,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Lượt xem theo ngày'"
+                  "Value": "'Lượt xem theo loại nội dung'"
                 }
               }
             }

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "1fb77d258ab3101ec64d",
+  "position": {
+    "x": 303.69581749049428,
+    "y": 129.94676806083649,
+    "z": 4000,
+    "height": 410.28136882129274,
+    "width": 657.03422053231941,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "finaldata"
+                    }
+                  },
+                  "Property": "Content Type"
+                }
+              },
+              "queryRef": "finaldata.Content Type",
+              "nativeQueryRef": "Content Type",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "finaldata"
+                    }
+                  },
+                  "Property": "PageViews"
+                }
+              },
+              "queryRef": "finaldata.PageViews",
+              "nativeQueryRef": "PageViews"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "finaldata"
+                    }
+                  },
+                  "Property": "Unique Visitors"
+                }
+              },
+              "queryRef": "finaldata.Unique Visitors",
+              "nativeQueryRef": "Unique Visitors"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "finaldata"
+                  }
+                },
+                "Property": "PageViews"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e1e1706562c7592d9250",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "finaldata"
+              }
+            },
+            "Property": "Content Type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3e0d7ccfd7c70e09a805",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "finaldata"
+              }
+            },
+            "Property": "PageViews"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1f2fa5707c2be90920b7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "finaldata"
+              }
+            },
+            "Property": "Unique Visitors"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
