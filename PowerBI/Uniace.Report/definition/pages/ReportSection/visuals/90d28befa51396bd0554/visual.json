@@ -81,24 +81,11 @@
         }
       ]
     },
+    "syncGroup": {
+      "groupName": "Traffic Type",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "5dccc571e557370c0eab",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "finaldata"
-              }
-            },
-            "Property": "Traffic Type"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }
