@@ -4,10 +4,10 @@
   "position": {
     "x": 303.69581749049428,
     "y": 610.31178707224331,
-    "z": 16000,
-    "height": 410.28136882129274,
+    "z": 15000,
+    "height": 389.8403041825095,
     "width": 1033.7338403041824,
-    "tabOrder": 16000
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "tableEx",
@@ -115,6 +115,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "finaldata"
+                  }
+                },
+                "Property": "PageViews"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
@@ -317,7 +334,7 @@
         }
       },
       {
-        "name": "5ecdd846814c1341ece8",
+        "name": "950520c0acd26dcd9510",
         "field": {
           "Column": {
             "Expression": {
@@ -331,7 +348,7 @@
         "type": "Categorical"
       },
       {
-        "name": "a941118fdeac8231ed55",
+        "name": "1f71009235695c03e109",
         "field": {
           "Measure": {
             "Expression": {
@@ -345,7 +362,7 @@
         "type": "Advanced"
       },
       {
-        "name": "61c830afd73000957080",
+        "name": "cc38e5c6708141c70488",
         "field": {
           "Measure": {
             "Expression": {
@@ -359,7 +376,7 @@
         "type": "Advanced"
       },
       {
-        "name": "64536dd18045d5d6aec3",
+        "name": "f088d6105090e3209646",
         "field": {
           "Measure": {
             "Expression": {
@@ -373,7 +390,7 @@
         "type": "Advanced"
       },
       {
-        "name": "ed82460ae9d19b5d1564",
+        "name": "10b38ffc5a8751507423",
         "field": {
           "Measure": {
             "Expression": {
@@ -387,7 +404,7 @@
         "type": "Advanced"
       },
       {
-        "name": "5e6615fcb865ac01a993",
+        "name": "52b53dcd70b5eb4a404e",
         "field": {
           "Measure": {
             "Expression": {

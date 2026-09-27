@@ -7,7 +7,7 @@
     "z": 10000,
     "height": 457.00380228136879,
     "width": 643.89353612167292,
-    "tabOrder": 11000
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "scatterChart",
@@ -220,8 +220,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 4,
-                      "Percent": 0
+                      "ColorId": 2,
+                      "Percent": 0.6
                     }
                   }
                 }
@@ -289,6 +289,48 @@
                     "Right": {
                       "Literal": {
                         "Value": "'Chương trình đào tạo'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "finaldata"
+                          }
+                        },
+                        "Property": "Content Type"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Young Talent'"
                       }
                     }
                   }

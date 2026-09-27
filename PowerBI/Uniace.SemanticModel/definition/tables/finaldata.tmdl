@@ -198,10 +198,10 @@ table finaldata
 		dataType: int64
 		formatString: 0
 		lineageTag: 792d7dc1-5128-468b-84f9-be09e8cfd2c8
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: Day of Week
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column 'Visitor ID'
 		dataType: string
@@ -399,8 +399,8 @@ table finaldata
 				    else null),
 				    #"Inserted Date" = Table.AddColumn(#"Added Custom2", "Only Date", each DateTime.Date([Date]), type date),
 				    #"Inserted Hour" = Table.AddColumn(#"Inserted Date", "Hour", each Time.Hour([Date]), Int64.Type),
-				    #"Inserted Day of Week" = Table.AddColumn(#"Inserted Hour", "Day of Week", each Date.DayOfWeek([Date]), Int64.Type),
-				    #"Added Day Name" = Table.AddColumn(#"Inserted Day of Week", "Thứ", each {"Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"}{[Day of Week]}, type text),
+				    #"Inserted Day of Week" = Table.AddColumn(#"Inserted Hour", "Day of Week", each Date.DayOfWeek([Date], Day.Monday), Int64.Type),
+				    #"Added Day Name" = Table.AddColumn(#"Inserted Day of Week", "Thứ", each {"Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"}{[Day of Week]}),
 				    #"Removed Columns1" = Table.RemoveColumns(#"Added Day Name",{"URL", "Link", "Tag", "_1", "", "Title", "ma_path", "Date", "IP Address", "cuid"})
 				in
 				    #"Removed Columns1"

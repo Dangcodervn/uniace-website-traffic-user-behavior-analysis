@@ -1463,6 +1463,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.452
 			          }
+			        },
+			        {
+			          "Giờ": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -3086,23 +3096,161 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "finaldata.thứ": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "finaldata",
+			          "ConceptualProperty": "Thứ"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "thứ": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "finaldata.số_bài_viết": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "finaldata",
+			          "ConceptualProperty": "Số bài viết"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "số bài viết": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "finaldata.số_bài": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "finaldata",
+			          "ConceptualProperty": "% số bài"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% số bài": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "percentage số bài": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "pct số bài": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "finaldata.lượt_xem": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "finaldata",
+			          "ConceptualProperty": "% lượt xem"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% lượt xem": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "percentage lượt xem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "pct lượt xem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "finaldata.lượt_xem_trung_bình___bài": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "finaldata",
+			          "ConceptualProperty": "Lượt xem trung bình / bài"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "lượt xem trung bình / bài": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "lượt xem trung bình": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "lượt xem trung bình bài": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "bài": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "finaldata_only_date_date_hierarchy_has_finaldata_only_date_quarter": {
+			    "finaldata_has_số_bài": {
 			      "Binding": {
 			        "ConceptualEntity": "finaldata"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "finaldata.only_date.date_hierarchy": {
+			        "finaldata": {
 			          "Target": {
-			            "Entity": "finaldata.only_date.date_hierarchy"
+			            "Entity": "finaldata"
 			          }
 			        },
-			        "finaldata.only_date.quarter": {
+			        "finaldata.số_bài": {
 			          "Target": {
-			            "Entity": "finaldata.only_date.quarter"
+			            "Entity": "finaldata.số_bài"
 			          }
 			        }
 			      },
@@ -3110,32 +3258,32 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "finaldata.only_date.date_hierarchy"
+			              "Role": "finaldata"
 			            },
 			            "Object": {
-			              "Role": "finaldata.only_date.quarter"
+			              "Role": "finaldata.số_bài"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "only_date_hierarchies_have_only_quarters"
+			          "ID": "finaldatas_have__số_bài"
 			        }
 			      ]
 			    },
-			    "finaldata_only_date_date_hierarchy_has_finaldata_only_date_year": {
+			    "finaldata_has_số_bài_viết": {
 			      "Binding": {
 			        "ConceptualEntity": "finaldata"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "finaldata.only_date.date_hierarchy": {
+			        "finaldata": {
 			          "Target": {
-			            "Entity": "finaldata.only_date.date_hierarchy"
+			            "Entity": "finaldata"
 			          }
 			        },
-			        "finaldata.only_date.year": {
+			        "finaldata.số_bài_viết": {
 			          "Target": {
-			            "Entity": "finaldata.only_date.year"
+			            "Entity": "finaldata.số_bài_viết"
 			          }
 			        }
 			      },
@@ -3143,32 +3291,32 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "finaldata.only_date.date_hierarchy"
+			              "Role": "finaldata"
 			            },
 			            "Object": {
-			              "Role": "finaldata.only_date.year"
+			              "Role": "finaldata.số_bài_viết"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "only_date_hierarchies_have_only_years"
+			          "ID": "finaldatas_have_số_bài_viết"
 			        }
 			      ]
 			    },
-			    "finaldata_only_date_has_date_hierarchy": {
+			    "finaldata_has_thứ": {
 			      "Binding": {
 			        "ConceptualEntity": "finaldata"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "finaldata.only_date": {
+			        "finaldata": {
 			          "Target": {
-			            "Entity": "finaldata.only_date"
+			            "Entity": "finaldata"
 			          }
 			        },
-			        "finaldata.only_date.date_hierarchy": {
+			        "finaldata.thứ": {
 			          "Target": {
-			            "Entity": "finaldata.only_date.date_hierarchy"
+			            "Entity": "finaldata.thứ"
 			          }
 			        }
 			      },
@@ -3176,15 +3324,15 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "finaldata.only_date"
+			              "Role": "finaldata"
 			            },
 			            "Object": {
-			              "Role": "finaldata.only_date.date_hierarchy"
+			              "Role": "finaldata.thứ"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "only_dates_have_only_date_hierarchies"
+			          "ID": "finaldatas_have_thứ"
 			        }
 			      ]
 			    },
@@ -4208,6 +4356,171 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "finaldatas_have_emails"
+			        }
+			      ]
+			    },
+			    "finaldata_has_lượt_xem": {
+			      "Binding": {
+			        "ConceptualEntity": "finaldata"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "finaldata": {
+			          "Target": {
+			            "Entity": "finaldata"
+			          }
+			        },
+			        "finaldata.lượt_xem": {
+			          "Target": {
+			            "Entity": "finaldata.lượt_xem"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "finaldata"
+			            },
+			            "Object": {
+			              "Role": "finaldata.lượt_xem"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "finaldatas_have__lượt_xem"
+			        }
+			      ]
+			    },
+			    "finaldata_has_lượt_xem_trung_bình___bài": {
+			      "Binding": {
+			        "ConceptualEntity": "finaldata"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "finaldata": {
+			          "Target": {
+			            "Entity": "finaldata"
+			          }
+			        },
+			        "finaldata.lượt_xem_trung_bình___bài": {
+			          "Target": {
+			            "Entity": "finaldata.lượt_xem_trung_bình___bài"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "finaldata"
+			            },
+			            "Object": {
+			              "Role": "finaldata.lượt_xem_trung_bình___bài"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "finaldatas_have_lượt_xem_trung_bình___bài"
+			        }
+			      ]
+			    },
+			    "finaldata_only_date_has_date_hierarchy": {
+			      "Binding": {
+			        "ConceptualEntity": "finaldata"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "finaldata.only_date": {
+			          "Target": {
+			            "Entity": "finaldata.only_date"
+			          }
+			        },
+			        "finaldata.only_date.date_hierarchy": {
+			          "Target": {
+			            "Entity": "finaldata.only_date.date_hierarchy"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "finaldata.only_date"
+			            },
+			            "Object": {
+			              "Role": "finaldata.only_date.date_hierarchy"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "only_dates_have_only_date_hierarchies"
+			        }
+			      ]
+			    },
+			    "finaldata_only_date_date_hierarchy_has_finaldata_only_date_year": {
+			      "Binding": {
+			        "ConceptualEntity": "finaldata"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "finaldata.only_date.date_hierarchy": {
+			          "Target": {
+			            "Entity": "finaldata.only_date.date_hierarchy"
+			          }
+			        },
+			        "finaldata.only_date.year": {
+			          "Target": {
+			            "Entity": "finaldata.only_date.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "finaldata.only_date.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "finaldata.only_date.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "only_date_hierarchies_have_only_years"
+			        }
+			      ]
+			    },
+			    "finaldata_only_date_date_hierarchy_has_finaldata_only_date_quarter": {
+			      "Binding": {
+			        "ConceptualEntity": "finaldata"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "finaldata.only_date.date_hierarchy": {
+			          "Target": {
+			            "Entity": "finaldata.only_date.date_hierarchy"
+			          }
+			        },
+			        "finaldata.only_date.quarter": {
+			          "Target": {
+			            "Entity": "finaldata.only_date.quarter"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "finaldata.only_date.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "finaldata.only_date.quarter"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "only_date_hierarchies_have_only_quarters"
 			        }
 			      ]
 			    },

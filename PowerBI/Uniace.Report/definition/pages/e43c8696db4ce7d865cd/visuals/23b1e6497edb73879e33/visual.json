@@ -23,11 +23,11 @@
                       "Entity": "finaldata"
                     }
                   },
-                  "Property": "Referrer Type"
+                  "Property": "Hour"
                 }
               },
-              "queryRef": "finaldata.Referrer Type",
-              "nativeQueryRef": "Referrer Type",
+              "queryRef": "finaldata.Hour",
+              "nativeQueryRef": "Hour",
               "active": true
             }
           ]

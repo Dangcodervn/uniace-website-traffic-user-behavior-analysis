@@ -23,12 +23,27 @@
                       "Entity": "finaldata"
                     }
                   },
-                  "Property": "Traffic Type"
+                  "Property": "School"
                 }
               },
-              "queryRef": "finaldata.Traffic Type",
-              "nativeQueryRef": "Traffic Type",
+              "queryRef": "finaldata.School",
+              "nativeQueryRef": "School",
               "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "finaldata"
+                    }
+                  },
+                  "Property": "Thứ"
+                }
+              },
+              "queryRef": "finaldata.Thứ",
+              "nativeQueryRef": "Thứ",
+              "active": false
             }
           ]
         }
