@@ -161,32 +161,27 @@ Có 19 measure trong bảng `finaldata`, không chia folder. 12 measure đang đ
 >
 > **Trang khác**: trang tiện ích (tài khoản, thanh toán, chính sách) và các sự kiện không phải trang. Nhóm này bị loại khi phân tích nội dung.
 
-**Số liệu quan sát được:**
-- Nhóm **Dữ liệu** chiếm **55%** tổng lượt xem, cao hơn Young Talent (**18,6%**) và Kỹ năng mềm (**11,5%**).
-- Trong các nhóm nội dung (đã bỏ Trang khác, 678 bài): Kỹ năng mềm chiếm **26%** số bài nhưng chỉ **13%** lượt xem. Young Talent chỉ chiếm **4%** số bài nhưng có **21%** lượt xem.
-- Top 10 bài chiếm **60%** lượt xem của nhóm nội dung, nên lượt xem tập trung cao vào một số bài.
-- Bài "Hướng dẫn cách copy giữ nguyên giá trị trong Excel" có **7.033** lượt xem, trong đó **96%** đến từ Organic. Các bài hướng dẫn Excel là nguồn SEO chính của website.
-- Social chiếm **7,6%** lượt xem toàn site, nhưng **36,7%** lượt xem Young Talent, cao gấp khoảng 4,8 lần.
-- Lượt xem Young Talent có hai đợt: 8-9/8 với **684** và **932** lượt, trong đó Social là **382** và **481** lượt, còn email mở chỉ **1** và **5** lần. Đợt 12-16/8 xuất hiện thêm Nội bộ và email nhắc, nên không thể kết luận đợt này chỉ do một nguồn.
-- Email `young-talent-reactivate` có **999** lượt mở, trong đó **452** lượt vào ngày 14/8. Tỷ lệ click của toàn bộ email Young Talent là **28%** (432/1.541 lượt mở), tức là đa số người mở email không bấm link.
-- Trong 163 cặp (người, email) có cả mở và click, **142** cặp click trong vòng 1 giờ sau khi mở. Click là bấm link trong email, không phải bước xác nhận.
-- Giờ có lượt xem cao nhất là **22h** (**5.022** lượt) và **9h** (**4.789** lượt). Đây là giờ xem, chưa phải giờ mua.
-- Theo thứ, Thứ 2 có lượt xem cao nhất (**14.211**), Thứ 4 thấp nhất (**6.392**). Dữ liệu chỉ có 3 đến 4 ngày cho mỗi thứ, và Thứ 2 bao gồm ngày 16/8 là đỉnh của đợt tăng, nên chỉ mang tính tham khảo.
-- **43,6%** khách chỉ xem đúng 1 trang và **4,5%** xem từ 10 trang trở lên, trên 19.369 khách có mã truy cập.
-- Có **2.227** email đăng ký duy nhất. Trong **118** người mở email xác nhận đơn, **42%** (49 người) từng tương tác với Young Talent, trong đó **28** người tương tác trước khi nhận email xác nhận đơn. Dữ liệu không ghi tên khóa học trong đơn, nên không quy được đơn hàng cho Young Talent.
-- Có **127** sinh viên đăng ký bằng email trường, UEL dẫn đầu với **42** người. Nhưng chỉ **13** sinh viên có lượt xem trang (**1,5%** lượt xem), nên mọi kết luận về nội dung sinh viên chỉ mang tính gợi ý.
+**Insight từ dữ liệu:**
+- Nhóm Dữ liệu chiếm hơn một nửa lượt xem (**55%**), lớn hơn tổng các nhóm còn lại cộng lại. Đây là trụ cột của website.
+- Kỹ năng mềm có nhiều bài nhưng mỗi bài được xem ít. Phần lớn lượt xem tập trung ở một nhóm nhỏ bài: 10 bài đứng đầu chiếm **60%** lượt xem của nhóm nội dung.
+- Young Talent chỉ có **4%** số bài nhưng nhận **21%** lượt xem, mỗi bài được xem gần **10** lần so với Kỹ năng mềm.
+- Bài hướng dẫn Excel "copy giữ nguyên giá trị" có **96%** lượt xem đến từ tìm kiếm. Khách vào các bài Excel chủ yếu đến từ Google.
+- Khóa Young Talent đến từ Social nhiều hơn hẳn toàn site: Social chiếm **36,7%** lượt xem của khóa học, trong khi toàn site chỉ **7,6%**.
+- Lượt xem Young Talent có hai đợt. Đợt đầu (8-9/8) chủ yếu từ Social và hầu như không có email. Đợt sau có thêm Nội bộ và email nhắc, nên không thể quy cho một nguồn duy nhất.
+- Email nhắc quay lại có lượt mở lớn nhưng phần lớn người mở không bấm link (tỷ lệ click **28%**). Người nhận đọc email nhiều hơn là hành động theo email.
+- Khách chủ yếu xem một trang rồi rời đi (**43,6%**). Lượt xem trong ngày tập trung vào buổi tối, đỉnh lúc **22** giờ, và buổi sáng lúc **9** giờ.
+- Chưa có dữ liệu giờ mua hàng và tên khóa học trong đơn. Trong **118** người mở email xác nhận đơn, **42%** từng tương tác với Young Talent, nên không xác định được bao nhiêu đơn đến từ khóa học.
+- Số sinh viên đăng ký (**127** người) lớn hơn số sinh viên xem trang (**13** người). Nhận định về nội dung sinh viên chỉ mang tính gợi ý.
 
 **Đề xuất hành động:**
-1. Ưu tiên viết thêm bài hướng dẫn Excel và Power Query theo hướng bài copy giữ nguyên giá trị: nhóm Dữ liệu đang chiếm 63% lượt xem trong nhóm nội dung, và các bài Excel kéo phần lớn khách từ Google.
-2. Tập trung đẩy Young Talent qua kênh Social, đặc biệt Facebook: Social chiếm 36,7% lượt xem khóa học, gấp gần 5 lần mức toàn site, nên đây là kênh đang đưa khách đến khóa học.
-3. Thử chia email nhắc quay lại theo nhóm hành vi (đã xem trang, đã mở email nhưng chưa bấm) và đo tỷ lệ click từng nhóm trước khi mở rộng: `reactivate` có 999 lượt mở nhưng tỷ lệ click tổng chỉ 28%, nên nội dung email hiện chưa đủ lý do để bấm.
-4. Đối chiếu khung giờ 9h và 21-22h với dữ liệu giờ mua trước khi phân bổ ngân sách quảng cáo: giờ xem cao điểm là 9h và 22h, nhưng dữ liệu hiện chưa có giờ mua chính xác.
+1. Viết thêm bài hướng dẫn Excel và Power Query theo kiểu thao tác từng bước: nhóm Dữ liệu đang kéo phần lớn lượt xem, và các bài Excel là nơi tìm kiếm đưa khách đến nhiều nhất.
+2. Đưa Young Talent vào kế hoạch đẩy qua Social, ưu tiên Facebook: khóa học nhận phần lớn khách từ Social, trong khi toàn site Social đóng góp rất ít.
+3. Tách email nhắc quay lại theo hành vi (đã xem trang, đã mở nhưng chưa bấm) và so sánh tỷ lệ bấm giữa các nhóm: phần lớn người mở email không bấm link, nên cần thử nội dung nhắc khác cho từng nhóm.
+4. Lấy dữ liệu thời điểm mua hàng trước khi chọn khung giờ chạy quảng cáo: giờ khách xem trang cao điểm chưa cho biết khi nào họ mua.
 
 ## Tech Stack
 
-- **Python (pandas)**: đọc và gộp 3 file Excel, sửa cột ngày, xuất `finaldata.csv` (`Clean data/UniaceData.ipynb`).
-- **Power Query (M)**: tạo các cột phân loại `Content Type`, `Referrer Type`, `Traffic Type`, `Customer Type`, `School` và cột thời gian `Hour`, `Day of Week`, `Thứ`.
-- **DAX**: 19 measure trong `finaldata.tmdl`, gồm đếm khách không trùng, tỷ trọng theo nhóm và phân tích email.
-- **Power BI Desktop**: mô hình dữ liệu và dashboard 5 trang, định dạng PBIP với PBIR và TMDL. Theme tùy chỉnh nằm ở `PowerBI/Theme.json`.
-- **Excel**: kiểm tra dữ liệu gốc và lưu data dictionary (`Document/Document.xlsx`).
-- **Git và GitHub**: quản lý repo. Các file dữ liệu thô và đã làm sạch được gitignore.
+- **Python**
+- **Power BI Desktop**
+- **Git**
+- **GitHub**
